@@ -1,0 +1,62 @@
+{
+  "name": "Agape-alerta",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "AgapeInvest",
+        "remoteJid": "5511911740807",
+        "messageText": "= Ola, {{ $json.nome }} está aguardando um contato no telefone {{ $json.telefone }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [0, -32],
+      "id": "b1964e0c-608e-4bfa-b91e-a734ca20570e",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "c1wfFtozXd7xaqsj",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "nome"
+            },
+            {
+              "name": "telefone"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [-256, -32],
+      "id": "1e4a3d2b-5c6f-7a8e-9b0c-1d2e3f4a5b6c",
+      "name": "Execute Workflow Trigger"
+    }
+  ],
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2261808b81abb14749a17df4bf9a48a3fa89d3e4ed35f469dcba71b40b4c5400"
+  }
+}
